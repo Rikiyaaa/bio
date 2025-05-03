@@ -6,7 +6,7 @@ function initVisitorCounter() {
     
     if (!visitorCountElement) return;
     
-    const websiteNamespace = 'https://www.kitsxkorn.xyz/'; // Use as website name or URL (no spaces or special chars)
+    const websiteNamespace = 'www.kitsxkorn.xyz'; // Use as website name or URL (no spaces or special chars)
     const counterKey = 'visitors'; // Key for storing visitor count
     
     // Show loading state
