@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kitsxkorn | Contact</title>
+    <link rel="icon" href="favicon.png" type="image/x-icon">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="enter-screen">
+        <div class="enter-content">
+            <button class="enter-button">Enter</button>
+            <p id="music-consent" style="margin-top: 10px; font-size: 12px; color: #666;">กดเพื่อเข้าชมโปรไฟล์</p>
+        </div>
+    </div>
+    <div id="loading-screen">
+        <div class="loading-content">
+            <span class="loader"></span>
+            <div class="loading-text">LOADING</div>
+            <div class="progress-bar">
+                <div class="progress" id="progress"></div>
+            </div>
+        </div>
+    </div>
+    <video id="video-background" autoplay muted loop playsinline>
+        <source src="https://r2.guns.lol/c4acc28c-4050-4c8c-9031-1f63ab316a18.mp4" type="video/mp4">
+    </video>
+    <div class="overlay"></div>
+    <div class="container" id="tilt-card">
+    <div class="visitor-counter" id="visitor-counter" title="จำนวนผู้เข้าชม">
+        <div class="visitor-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                <circle cx="9" cy="7" r="4"></circle>
+                <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+            </svg>
+        </div>
+        <div class="visitor-count" id="visitor-count"></div>
+    </div>
+    <div class="profile">
+        <img src="https://img.avatardecoration.com/decorations/spirit_embers.png" alt="Avatar Decoration" class="avatar-decoration">
+        <img src="https://scontent.fbkk35-1.fna.fbcdn.net/v/t39.30808-6/415514076_371710592204535_3568494204998897728_n.jpg?_nc_cat=102&ccb=1-7&_nc_sid=6ee11a&_nc_ohc=SQNMISV8ViIQ7kNvwFAqzp_&_nc_oc=AdmMFszFCnNIIec20_ayrsx_6JQkDjcglsi_1fD_X2HrkUNN2v7Arj7GJHpdr2vJ__Q&_nc_zt=23&_nc_ht=scontent.fbkk35-1.fna&_nc_gid=hn7qHIjCzl7541Q1Kyf8Lw&oh=00_AfEWjfcSw6Z07NqBUHrM9IpQrFAV0um8BK_X5K0gCzTUhw&oe=681B8CF7" alt="Profile Picture" class="profile-picture">
+        <div class="username-container">
+            <span class="username"></span>
+            <span class="typing-cursor"></span>
+        </div>
+        <div class="bio">
+            <div >
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 -5 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/>
+                </svg>
+                <span>developer / designer</span>
+            </div>
+        </div>
+        
+        <div class="badges">
+            <div class="badge">17 y/o</div>
+            <div class="badge">
+                <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 3px; vertical-align: middle;">
+                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                    <circle cx="12" cy="10" r="3"></circle>
+                </svg>
+                BKK
+            </div>
+        </div>
+    </div>
+<div class="discord-profile">
+    <div class="discord-avatar">
+        <div class="discord-status" id="discord-status-indicator"></div>
+        
+        <img src="https://cdn.discordapp.com/avatars/918384557131173988/d99d7751633fdcf80346b7ac64cc7e48.webp" alt="Discord Avatar" id="discord-avatar">
+    </div>
+    <div class="discord-info">
+        <div class="discord-username" id="discord-username">กำลังโหลด...
+        </div>
+        <div class="discord-badges" id="discord-badges">
+        </div>
+        <div class="discord-activity">
+            <div class="discord-activity-status">
+                <span id="discord-status-text">กำลังโหลดสถานะ...</span>
+            </div>
+            <div class="discord-time" id="discord-time">กำลังดึงข้อมูล</div>
+        </div>
+    </div>
+</div>
+        <div class="music-player">
+            <img src="/api/placeholder/300/300" alt="Album Cover" class="album-cover" id="album-cover">
+            <div class="music-info">
+                <div class="music-title">Monkey Juice</div>
+                <div class="music-artist">1MILL</div>
+                <div class="music-timeline">
+                    <div class="music-progress" id="music-progress"></div>
+                </div>
+                <div class="music-time">
+                    <span id="current-time">0:00</span>
+                    <span id="duration">0:00</span>
+                </div>
+            </div>
+            <div class="music-controls">
+                <button class="play-btn" id="play-btn">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" id="play-icon">
+                        <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                    </svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" id="pause-icon" style="display: none;">
+                        <rect x="6" y="4" width="4" height="16"></rect>
+                        <rect x="14" y="4" width="4" height="16"></rect>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <div class="links">
+            <a href="https://www.roblox.com/th/users/7780517048/profile" class="link">
+                <svg width="1024" height="1024" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg">
+                    <g transform="rotate(17.5 512 512)">
+                      <rect x="192" y="192" width="640" height="640" fill="white"/>
+                      <rect x="416" y="416" width="192" height="192" fill="black"/>
+                    </g>
+                  </svg>
+                  
+                  
+                <span>Roblox</span>
+            </a>
+            <a href="https://www.facebook.com/kitsakorn.i.2024" class="link">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40" width="40" height="40">
+                    <path fill="#FFFFFF" d="M20 0C8.97 0 0 8.97 0 20c0 9.94 7.26 18.18 16.75 19.74v-14H11.7v-5.74h5.05V15.2c0-5 3-7.75 7.55-7.75 2.19 0 4.49.39 4.49.39v4.94h-2.53c-2.49 0-3.27 1.55-3.27 3.14v3.74h5.57L27.4 25.7h-4.36v14C32.75 38.18 40 29.94 40 20 40 8.97 31.03 0 20 0z"/>
+                  </svg>
+                  
+                  
+                <span>Facebook</span>
+            </a>
+            <a href="https://www.instagram.com/kitsx.korn._" class="link">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                    <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                </svg>
+                <span>Instagram</span>
+            </a>
+            <a href="https://discord.gg/6BW9xjju6s" class="link">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-discord" viewBox="0 0 16 16">
+                    <path d="M13.545 2.907a13.2 13.2 0 0 0-3.257-1.011.05.05 0 0 0-.052.025c-.141.25-.297.577-.406.833a12.2 12.2 0 0 0-3.658 0 8 8 0 0 0-.412-.833.05.05 0 0 0-.052-.025c-1.125.194-2.22.534-3.257 1.011a.04.04 0 0 0-.021.018C.356 6.024-.213 9.047.066 12.032q.003.022.021.037a13.3 13.3 0 0 0 3.995 2.02.05.05 0 0 0 .056-.019q.463-.63.818-1.329a.05.05 0 0 0-.01-.059l-.018-.011a9 9 0 0 1-1.248-.595.05.05 0 0 1-.02-.066l.015-.019q.127-.095.248-.195a.05.05 0 0 1 .051-.007c2.619 1.196 5.454 1.196 8.041 0a.05.05 0 0 1 .053.007q.121.1.248.195a.05.05 0 0 1-.004.085 8 8 0 0 1-1.249.594.05.05 0 0 0-.03.03.05.05 0 0 0 .003.041c.24.465.515.909.817 1.329a.05.05 0 0 0 .056.019 13.2 13.2 0 0 0 4.001-2.02.05.05 0 0 0 .021-.037c.334-3.451-.559-6.449-2.366-9.106a.03.03 0 0 0-.02-.019m-8.198 7.307c-.789 0-1.438-.724-1.438-1.612s.637-1.613 1.438-1.613c.807 0 1.45.73 1.438 1.613 0 .888-.637 1.612-1.438 1.612m5.316 0c-.788 0-1.438-.724-1.438-1.612s.637-1.613 1.438-1.613c.807 0 1.451.73 1.438 1.613 0 .888-.631 1.612-1.438 1.612"/>
+                  </svg>
+                  
+                <span>Discord</span>
+            </a>
+        </div>
+    </div>
+    <audio id="bg-music" loop>
+        <source src="" type="audio/mpeg">
+    </audio>
+       <div class="volume-control-container">
+        <div class="volume-slider-container">
+            <input type="range" min="0" max="100" value="20" class="volume-slider" id="volume-slider">
+            <div class="volume-level">20%</div>
+        </div>
+        <button class="volume-button" id="volume-button">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" id="volume-high-icon">
+                <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                <path d="M19.07 4.93a10 10 0 0 1 0 14.14" id="volume-wave-high"></path>
+                <path d="M15.54 8.46a5 5 0 0 1 0 7.07" id="volume-wave-low"></path>
+            </svg>
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" id="volume-mute-icon" style="display: none;">
+                <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                <line x1="23" y1="9" x2="17" y2="15"></line>
+                <line x1="17" y1="9" x2="23" y2="15"></line>
+            </svg>
+        </button>
+    </div>
+    <div class="soundcloud-container">
+        <iframe id="soundcloud-widget" width="200%" height="166" scrolling="no" frameborder="no" allow="autoplay" 
+            src="https://w.soundcloud.com/player/?url=https%3A//soundcloud.com/zpoomzk/monkey-juice-1mill&color=%23ff5500&auto_play=false&hide_related=false&show_comments=false&show_user=false&show_reposts=false&show_teaser=false"></iframe>
+    </div>
+    <script src="https://w.soundcloud.com/player/api.js"></script>
+    <script src="script/mouse-trail.js"></script>
+    <script src="script/discord-integration.js"></script>
+    <script src="script/snow-effect.js"></script>
+    <script src="script/main.js"> </script>
+    <script src="script/music-player.js"> </script>
+    <script src="script/tilt-effect.js"> </script>
+    <script src="script/typing-effect.js"> </script>
+    <script src="script/volume-controls.js"> </script>
+    <script src="script/link-confirmation.js"></script>
+</body>
+</html>
