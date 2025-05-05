@@ -22,8 +22,9 @@ function initVisitorCounter() {
             return response.json();
         })
         .then(data => {
-            // Update counter value - assuming the new API returns count in data.count
-            const count = data.count || data.value || 1; // Fallback options if API structure differs
+            // Update counter value using the correct field from the API response
+            // The new API returns the count in data.count as shown in the sample response
+            const count = data.count || 1; // Fallback to 1 if count is somehow missing
             visitorCountElement.textContent = formatVisitorCount(count);
             visitorCountElement.classList.remove('loading');
         })
