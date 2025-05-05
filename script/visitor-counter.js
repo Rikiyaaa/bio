@@ -1,6 +1,3 @@
-// Visitor Counter using CounterAPI
-
-// Initialize visitor counter functionality
 function initVisitorCounter() {
     const visitorCountElement = document.getElementById('visitor-count');
     
@@ -13,8 +10,8 @@ function initVisitorCounter() {
     visitorCountElement.textContent = '';
     visitorCountElement.classList.add('loading');
     
-    // Create URL for API request
-    const apiUrl = `https://api.countapi.xyz/hit/${encodeURIComponent(websiteNamespace)}/${encodeURIComponent(counterKey)}`;
+    // Create URL for API request using the new API endpoint
+    const apiUrl = `https://api.counterapi.dev/v1/${encodeURIComponent(websiteNamespace)}/${encodeURIComponent(counterKey)}/up`;
     
     // Call CounterAPI
     fetch(apiUrl)
@@ -25,8 +22,9 @@ function initVisitorCounter() {
             return response.json();
         })
         .then(data => {
-            // Update counter value
-            visitorCountElement.textContent = formatVisitorCount(data.value);
+            // Update counter value - assuming the new API returns count in data.count
+            const count = data.count || data.value || 1; // Fallback options if API structure differs
+            visitorCountElement.textContent = formatVisitorCount(count);
             visitorCountElement.classList.remove('loading');
         })
         .catch(error => {
