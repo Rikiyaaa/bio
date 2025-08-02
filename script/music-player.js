@@ -1,3 +1,4 @@
+let isDragging = false;
 // Music Player with SoundCloud Integration
 
 // Music player elements
@@ -20,9 +21,17 @@ function initSoundCloud() {
     const iframeElement = document.querySelector('#soundcloud-widget');
     scPlayer = SC.Widget(iframeElement);
     let currentTrack = getRandomTrack(); // เริ่มต้นด้วยเพลงสุ่ม
+
+    // ให้ playlist.js เข้าถึง player ได้
+    window.scPlayer = scPlayer;
+    window.scReady = scReady;
+    window.getRandomTrack = getRandomTrack;
+    window.getNextTrack = getNextTrack;
     
     scPlayer.bind(SC.Widget.Events.READY, function() {
         scReady = true;
+        window.scReady = true;
+        console.log('SoundCloud READY: window.scReady =', window.scReady);
         
         // โหลดเพลงแรก
         scPlayer.load(currentTrack.url, {
@@ -34,10 +43,15 @@ function initSoundCloud() {
                 document.querySelector('.music-title').textContent = currentTrack.title;
                 document.querySelector('.music-artist').textContent = currentTrack.artist;
                 
-                // Get track duration
+                // อัปเดต currentTrack เป็น global
+                window.currentTrack = currentTrack;
+                // รีเซ็ต progress bar, current time, duration
+                musicProgress.style.width = '0%';
+                currentTimeEl.textContent = '0:00';
+                durationEl.textContent = '--:--';
                 scPlayer.getDuration(function(duration) {
                     scDuration = duration;
-                    durationEl.textContent = formatTime(duration/1000);
+                    durationEl.textContent = duration > 0 ? formatTime(duration/1000) : '--:--';
                 });
                 
         // ตั้งค่าระดับเสียงเริ่มต้น
@@ -77,7 +91,7 @@ function initSoundCloud() {
                     scPlayer.play();
                     setPlayingState(true);
                 }, 100);
-                    }, 100); // รอ 4 วินาที
+                    }, 1500); // รอ 4 วินาที
                 }
             }
         });
@@ -123,39 +137,31 @@ function initSoundCloud() {
     });
     
     // Setup SoundCloud event listeners with smooth progress update
-    scPlayer.bind(SC.Widget.Events.PLAY_PROGRESS, function(e) {
-        // Update music progress bar smoothly
-        const position = e.currentPosition / 1000;
-        const duration = scDuration / 1000;
-        targetProgress = (position / duration) * 100;
-        
-        // ยกเลิก animation frame เดิม (ถ้ามี)
-        if (progressAnimationFrame) {
-            cancelAnimationFrame(progressAnimationFrame);
-        }
-        
-        // เริ่ม animation ใหม่
-        lastProgress = null;
-        progressAnimationFrame = requestAnimationFrame(animateProgress);
-        
-        // อัพเดทเวลาแบบ smooth
-        requestAnimationFrame(() => {
-            currentTimeEl.textContent = formatTime(position);
-        });
-    });
-    
-    scPlayer.bind(SC.Widget.Events.PLAY, function() {
-        setPlayingState(true);
-    });
-    
-    scPlayer.bind(SC.Widget.Events.PAUSE, function() {
-        setPlayingState(false);
-    });
+    // scPlayer.bind(SC.Widget.Events.PLAY_PROGRESS, function(e) {
+    //     // Update music progress bar smoothly
+    //     const position = e.currentPosition / 1000;
+    //     const duration = scDuration / 1000;
+    //     targetProgress = (position / duration) * 100;
+    //     
+    //     // ยกเลิก animation frame เดิม (ถ้ามี)
+    //     if (progressAnimationFrame) {
+    //         cancelAnimationFrame(progressAnimationFrame);
+    //     }
+    //     
+    //     // เริ่ม animation ใหม่
+    //     lastProgress = null;
+    //     progressAnimationFrame = requestAnimationFrame(animateProgress);
+    //     
+    //     // อัพเดทเวลาแบบ smooth
+    //     requestAnimationFrame(() => {
+    //         currentTimeEl.textContent = formatTime(position);
+    //     });
+    // });
     
     // ติดตามการเล่นเพลง
     // ติดตามความคืบหน้าการเล่น
     scPlayer.bind(SC.Widget.Events.PLAY_PROGRESS, function(e) {
-        if (!isDragging) { // อัพเดท UI เฉพาะเมื่อไม่ได้กำลังลาก
+        if (!isDragging && scDuration > 0) { // เพิ่มเช็ค scDuration > 0
             const currentPosition = e.currentPosition / 1000;
             const duration = scDuration / 1000;
             const progress = (currentPosition / duration) * 100;
@@ -292,7 +298,6 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Handle music timeline interaction
     const musicTimeline = document.querySelector('.music-timeline');
-    let isDragging = false;
     let wasPlaying = false;
     let lastTouchY = 0;
 
@@ -353,7 +358,9 @@ document.addEventListener('DOMContentLoaded', function() {
     document.addEventListener('mouseup', function(e) {
         if (isDragging && scReady) {
             const seekTime = smoothSeek(e);
-            scPlayer.seekTo(seekTime);
+            scPlayer.seekTo(seekTime, function() {
+                currentTimeEl.textContent = formatTime(seekTime / 1000); // อัปเดตเวลาหลัง seek จริง
+            });
             if (wasPlaying) {
                 scPlayer.play();
             }
