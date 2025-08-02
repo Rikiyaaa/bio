@@ -1,0 +1,1246 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    overflow: hidden;
+    touch-action: none;
+    position: fixed;
+    width: 100%;
+}
+
+body {
+    color: #f0f0f0;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #0a0a0a;
+    will-change: transform;
+    -webkit-font-smoothing: antialiased;
+}
+
+#video-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    z-index: -1;
+    object-fit: cover;
+    opacity: 0;
+    transition: opacity 1s ease;
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: -1;
+}
+
+.container {
+    max-width: 500px;
+    width: 90%;
+    padding: 30px;
+    background-color: rgba(26, 26, 26, 0.3);
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    transform-style: preserve-3d;
+    perspective: 1000px;
+    transition: transform 0.1s ease;
+    opacity: 0;
+    display: none;
+    margin: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    position: relative;
+    will-change: transform, opacity;
+    touch-action: none;
+    -webkit-overflow-scrolling: touch;
+}
+
+.profile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 30px;
+    position: relative;
+}
+
+.profile-picture {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #2e2e2e;
+    transform: translateZ(20px);
+    position: relative;
+    z-index: 1;
+}
+
+.avatar-decoration {
+    position: absolute;
+    width: 150px;
+    height: 150px;
+    top: -15px;
+    left: 50%;
+    transform: translateX(-50%) translateZ(25px);
+    z-index: 2;
+    pointer-events: none;
+}
+
+.username {
+    margin-top: 15px;
+    font-size: 24px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    transform: translateZ(15px);
+    position: relative;
+    height: 28px;
+    display: inline-block;
+}
+
+.username-container {
+    height: 28px;
+    width: 100%;
+    text-align: center;
+    margin-bottom: 5px;
+}
+
+.typing-cursor {
+    display: inline-block;
+    width: 2px;
+    height: 24px;
+    background-color: #f0f0f0;
+    animation: blink 1s infinite;
+    margin-left: 2px;
+    vertical-align: middle;
+}
+
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+}
+
+.bio {
+    margin-top: 15px;
+    color: #b0b0b0;
+    text-align: center;
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 1.5;
+    transform: translateZ(10px);
+}
+
+.links {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    justify-content: center;
+    margin: 20px 0;
+    flex-wrap: wrap;
+}
+
+.link {
+    background-color: rgba(37, 37, 37, 0.7);
+    padding: 12px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    color: #f0f0f0;
+    transition: all 0.3s ease;
+    transform: translateZ(5px);
+    width: 45px;
+    height: 45px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.link span {
+    display: none;
+}
+
+.link:hover {
+    background-color: rgba(48, 48, 48, 0.9);
+    transform: translateY(-2px) translateZ(5px) scale(1.1);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.link svg {
+    width: 20px;
+    height: 20px;
+}
+
+@media (max-width: 480px) {
+    .links {
+        gap: 15px;
+    }
+    
+    .link {
+        width: 40px;
+        height: 40px;
+        padding: 10px;
+    }
+    
+    .link svg {
+        width: 18px;
+        height: 18px;
+    }
+}
+
+.footer {
+    margin-top: 30px;
+    text-align: center;
+    color: #666;
+    font-size: 12px;
+}
+
+.badges {
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+    transform: translateZ(10px);
+}
+
+.badge {
+    background-color: #252525;
+    padding: 5px 10px;
+    border-radius: 50px;
+    font-size: 12px;
+    color: #aaa;
+    font-weight: 500;
+}
+
+/* Enter Screen Styles */
+#enter-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #0a0a0a;
+    z-index: 1000;
+    cursor: pointer;
+}
+
+.enter-content {
+    text-align: center;
+    padding: 20px;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    width: 90%;
+    max-width: 400px;
+}
+
+.enter-content:hover {
+    transform: scale(1.05);
+}
+
+.enter-content h1 {
+    font-size: 32px;
+    margin-bottom: 20px;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+.enter-button {
+    font-size: 16px;
+    color: #aaa;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    border: 1px solid #444;
+    padding: 12px 24px;
+    border-radius: 30px;
+    transition: all 0.3s ease;
+    background: transparent;
+    cursor: pointer;
+    width: 100%;
+    max-width: 200px;
+}
+
+.enter-button:hover {
+    background-color: rgba(255, 255, 255, 0.05);
+    border-color: #666;
+}
+
+/* Loading Screen Styles */
+#loading-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #0a0a0a;
+    z-index: 999;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.5s ease;
+}
+
+.loading-content {
+    text-align: center;
+    width: 90%;
+    max-width: 300px;
+}
+
+.loader {
+    width: 48px;
+    height: 48px;
+    border: 5px solid #333;
+    border-bottom-color: #f0f0f0;
+    border-radius: 50%;
+    display: inline-block;
+    box-sizing: border-box;
+    animation: rotation 1s linear infinite;
+    margin-bottom: 20px;
+}
+
+@keyframes rotation {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.loading-text {
+    font-size: 16px;
+    color: #aaa;
+    letter-spacing: 3px;
+}
+
+.progress-bar {
+    width: 100%;
+    height: 3px;
+    background-color: #222;
+    border-radius: 3px;
+    margin-top: 20px;
+    overflow: hidden;
+    position: relative;
+}
+
+.progress {
+    height: 100%;
+    background-color: #f0f0f0;
+    border-radius: 3px;
+    width: 0%;
+    transition: width 0.4s ease;
+}
+
+/* Music Player Styles */
+.music-player {
+    margin-top: 20px;
+    width: 100%;
+    background-color: #1e1e1e;
+    border-radius: 8px;
+    padding: 12px;
+    display: flex;
+    align-items: center;
+    transform: translateZ(10px);
+    transition: all 0.3s ease;
+}
+
+/* เพิ่ม effects เมื่อกำลังเล่นเพลง */
+.music-player.is-playing {
+    background-color: #252525;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.album-cover {
+    width: 48px;
+    height: 48px;
+    border-radius: 4px;
+    margin-right: 12px;
+    object-fit: cover;
+    background-color: #333;
+    flex-shrink: 0;
+}
+
+.music-info {
+    flex: 1;
+    padding-right: 15px;
+    overflow: hidden;
+}
+
+.music-title {
+    font-size: 14px;
+    font-weight: 500;
+    color: #f0f0f0;
+    margin-bottom: 5px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.music-artist {
+    font-size: 12px;
+    color: #999;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.music-controls {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.play-btn {
+    background-color: #333;
+    border: none;
+    border-radius: 50%;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.play-btn:hover {
+    background-color: #444;
+}
+
+.play-btn svg {
+    width: 14px;
+    height: 14px;
+    fill: #f0f0f0;
+}
+
+.music-timeline {
+    position: relative;
+    width: 100%;
+    height: 4px;
+    background-color: #333;
+    border-radius: 2px;
+    margin-top: 8px;
+    cursor: pointer;
+    overflow: hidden;
+    touch-action: none;
+    -webkit-user-select: none;
+    user-select: none;
+}
+
+.music-progress {
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 0%;
+    background-color: #f0f0f0;
+    border-radius: 2px;
+    transition: width 0.1s linear;
+}
+
+.music-time {
+    display: flex;
+    justify-content: space-between;
+    font-size: 10px;
+    color: #777;
+    margin-top: 5px;
+}
+
+/* Fade animations */
+.fade-in {
+    animation: fadeIn 1s forwards;
+}
+
+.fade-out {
+    animation: fadeOut 1s forwards;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes fadeOut {
+    from { opacity: 1; }
+    to { opacity: 0; visibility: hidden; }
+}
+
+
+/* SoundCloud iframe container */
+.soundcloud-container {
+    display: none;
+}
+
+/* Mobile responsive adjustments */
+@media (max-width: 480px) {
+    .container {
+        padding: 20px;
+    }
+    
+    .profile-picture {
+        width: 100px; 
+        height: 100px;
+    }
+
+    .avatar-decoration {
+        width: 125px;
+        height: 125px;
+        top: -12px;
+    }
+    
+    .username {
+        font-size: 20px;
+    }
+    
+    .bio {
+        font-size: 14px;
+    }
+    
+    .link {
+        padding: 10px 12px;
+    }
+    
+    .link span {
+        font-size: 14px;
+    }
+    
+    .album-cover {
+        width: 40px;
+        height: 40px;
+    }
+}
+
+/* Discord Profile Styles */
+.discord-profile {
+    background-color: #2a2d31;
+    border-radius: 8px;
+    padding: 12px;
+    display: flex;
+    align-items: center;
+    margin-bottom: 16px;
+    margin-top: -10px;
+    transform: translateZ(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.discord-avatar {
+    position: relative;
+    margin-right: 12px;
+    flex-shrink: 0;
+}
+
+.discord-avatar img {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    object-fit: cover;
+    background-color: #333;
+}
+
+.discord-status {
+    position: absolute;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    bottom: 0;
+    right: 0;
+    border: 2px solid #2a2d31;
+}
+
+.discord-status.online {
+    background-color: #3ba55c;
+}
+
+.discord-status.idle {
+    background-color: #faa61a;
+}
+
+.discord-status.dnd {
+    background-color: #ed4245;
+}
+
+.discord-status.offline {
+    background-color: #747f8d;
+}
+
+.discord-info {
+    flex: 1;
+    overflow: hidden;
+}
+
+.discord-username {
+    font-size: 16px;
+    font-weight: 600;
+    color: #fff;
+    margin-bottom: 4px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.discord-tag {
+    color: #b9bbbe;
+    font-weight: 400;
+}
+
+.discord-activity {
+    font-size: 12px;
+    color: #b9bbbe;
+}
+
+.discord-activity-status {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+    margin-bottom: 1px;
+    margin-top: -6px;
+}
+
+.discord-time {
+    font-size: 10px;
+    color: #72767d;
+}
+
+@media (max-width: 480px) {
+    .discord-avatar img {
+        width: 40px;
+        height: 40px;
+    }
+    
+    .discord-username {
+        font-size: 14px;
+    }
+}
+
+.discord-badges {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    margin-top: 2px;
+    margin-bottom: 4px;
+}
+
+.discord-badge {
+    width: 20px;
+    height: 20px;
+    border-radius: 3px;
+    background-color: #36393f;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    position: relative;
+}
+
+.discord-badge img {
+    width: 16px;
+    height: 16px;
+}
+
+.discord-badge:hover::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #18191c;
+    color: #fff;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+    white-space: nowrap;
+    margin-bottom: 6px;
+    z-index: 10;
+}
+
+.username-decoration {
+    display: inline-flex;
+    margin-right: 4px;
+}
+
+.discord-profile-decorations {
+    position: absolute;
+    top: -15px;
+    left: -15px;
+    right: -15px;
+    bottom: -15px;
+    pointer-events: none;
+    z-index: -1;
+}
+
+/* Visitor Counter Styles */
+.visitor-counter {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background-color: rgba(26, 26, 26, 0.7);
+    padding: 6px 10px;
+    border-radius: 50px;
+    font-size: 12px;
+    color: #f0f0f0;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(5px);
+    transform: translateZ(20px);
+    z-index: 10;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.visitor-counter:hover {
+    background-color: rgba(48, 48, 48, 0.9);
+    transform: translateZ(20px) scale(1.05);
+}
+
+.visitor-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.visitor-count {
+    font-weight: 600;
+    letter-spacing: 0.5px;
+}
+
+/* Loading animation for visitor counter */
+.visitor-count.loading {
+    position: relative;
+    width: 20px;
+}
+
+.visitor-count.loading::after {
+    content: "...";
+    position: absolute;
+    left: 0;
+    animation: loadingDots 1.5s infinite;
+}
+@keyframes loadingDots {
+    0%, 20% { content: "."; }
+    40%, 60% { content: ".."; }
+    80%, 100% { content: "..."; }
+}
+
+@media (max-width: 480px) {
+    .visitor-counter {
+        padding: 5px 8px;
+        font-size: 10px;
+        top: 8px;
+        left: 8px;
+    }
+    
+    .visitor-icon svg {
+        width: 12px;
+        height: 12px;
+    }
+}
+
+/* Volume Controls Styles */
+.volume-control-container {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    display: flex;
+    align-items: center;
+    z-index: 100;
+    transition: all 0.3s ease;
+}
+
+.volume-button {
+    background-color: rgba(26, 26, 26, 0.7);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: #f0f0f0;
+    backdrop-filter: blur(5px);
+    transition: all 0.2s ease;
+    outline: none;
+}
+
+.volume-button:hover {
+    background-color: rgba(48, 48, 48, 0.9);
+    transform: scale(1.05);
+}
+
+.volume-slider-container {
+    background-color: rgba(26, 26, 26, 0.7);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    padding: 10px;
+    margin-right: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    backdrop-filter: blur(5px);
+    width: 0;
+    overflow: hidden;
+    opacity: 0;
+    transition: all 0.3s ease;
+    pointer-events: none;
+}
+
+.volume-control-container:hover .volume-slider-container {
+    width: 120px;
+    opacity: 1;
+    pointer-events: all;
+}
+
+.volume-slider {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 100px;
+    height: 4px;
+    background: #333;
+    border-radius: 2px;
+    outline: none;
+    margin-bottom: 5px;
+}
+
+.volume-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #f0f0f0;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.volume-slider::-webkit-slider-thumb:hover {
+    transform: scale(1.2);
+    background: #fff;
+}
+
+.volume-slider::-moz-range-thumb {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #f0f0f0;
+    cursor: pointer;
+    border: none;
+    transition: all 0.2s ease;
+}
+
+.volume-slider::-moz-range-thumb:hover {
+    transform: scale(1.2);
+    background: #fff;
+}
+
+.volume-level {
+    font-size: 10px;
+    color: #aaa;
+    margin-top: 2px;
+}
+
+@media (max-width: 480px) {
+    .volume-control-container {
+        bottom: 15px;
+        right: 15px;
+    }
+    
+    .volume-button {
+        width: 36px;
+        height: 36px;
+    }
+    
+    .volume-button svg {
+        width: 16px;
+        height: 16px;
+    }
+    
+    .volume-control-container:hover .volume-slider-container {
+        width: 100px;
+    }
+    
+    .volume-slider {
+        width: 80px;
+    }
+}
+
+/* Playlist Button and Panel Styles */
+.playlist-button {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    background-color: rgba(26, 26, 26, 0.7);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    width: 40px;
+    height: 40px;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: #f0f0f0;
+    backdrop-filter: blur(5px);
+    transition: all 0.3s ease;
+    z-index: 1001;
+    opacity: 0;
+}
+
+.playlist-button:hover {
+    background-color: rgba(48, 48, 48, 0.9);
+    transform: scale(1.05);
+}
+
+.playlist-panel {
+    position: fixed;
+    bottom: 70px;
+    left: 20px;
+    background-color: rgba(26, 26, 26, 0.9);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    padding: 15px;
+    width: 300px;
+    max-height: 400px;
+    overflow-y: auto;
+    backdrop-filter: blur(10px);
+    z-index: 1001;
+    transform: translateY(20px);
+    opacity: 0;
+    display: none;
+    transition: all 0.3s ease;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255, 255, 255, 0.2) transparent;
+}
+
+.playlist-panel::-webkit-scrollbar {
+    width: 6px;
+}
+
+.playlist-panel::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.playlist-panel::-webkit-scrollbar-thumb {
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 3px;
+}
+
+.playlist-panel::-webkit-scrollbar-thumb:hover {
+    background-color: rgba(255, 255, 255, 0.3);
+}
+
+.playlist-panel.show {
+    transform: translateY(0);
+    opacity: 1;
+    visibility: visible;
+}
+
+.playlist-item {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    border-radius: 6px;
+    margin-bottom: 8px;
+    background-color: rgba(37, 37, 37, 0.7);
+    transition: all 0.2s ease;
+    cursor: pointer;
+    border: 1px solid transparent;
+}
+
+.playlist-item:hover {
+    background-color: rgba(48, 48, 48, 0.9);
+    transform: translateX(5px);
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+.playlist-item.playing {
+    background-color: rgba(60, 60, 60, 0.9) !important;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+.playlist-item.playing:hover {
+    transform: translateX(5px);
+    border-color: rgba(255, 255, 255, 0.4);
+}
+
+.playlist-item img {
+    width: 40px;
+    height: 40px;
+    border-radius: 4px;
+    margin-right: 12px;
+}
+
+.playlist-item-info {
+    flex: 1;
+    overflow: hidden;
+}
+
+.playlist-item-title {
+    font-size: 14px;
+    font-weight: 500;
+    color: #f0f0f0;
+    margin-bottom: 4px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.playlist-item-artist {
+    font-size: 12px;
+    color: #999;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+@media (max-width: 480px) {
+    .playlist-button {
+        bottom: 15px;
+        left: 15px;
+        width: 36px;
+        height: 36px;
+    }
+
+    .playlist-panel {
+        bottom: 60px;
+        left: 15px;
+        width: calc(100% - 30px);
+        max-height: 60vh;
+    }
+}
+/* Confirmation Dialog Styles */
+.confirmation-dialog-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10000;
+    backdrop-filter: blur(10px);
+    opacity: 1;
+    transition: opacity 0.3s ease;
+}
+
+.confirmation-dialog {
+    background-color: rgba(26, 26, 26, 0.8);
+    width: 90%;
+    max-width: 480px;
+    border-radius: 10px;
+    padding: 25px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transform-style: preserve-3d;
+    perspective: 1000px;
+    transform: translateZ(0);
+    transition: transform 0.3s ease;
+    pointer-events: auto;
+}
+
+.confirmation-heading {
+    font-size: 22px;
+    font-weight: 700;
+    color: #f0f0f0;
+    margin: 0;
+    letter-spacing: 0.5px;
+}
+
+.confirmation-message {
+    font-size: 15px;
+    color: #b0b0b0;
+    margin: 0;
+    line-height: 1.5;
+}
+
+.confirmation-url-container {
+    background-color: rgba(0, 0, 0, 0.3);
+    border-radius: 8px;
+    padding: 14px;
+    word-break: break-all;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.confirmation-url {
+    font-size: 14px;
+    color: #f0f0f0;
+    font-family: monospace;
+}
+
+.confirmation-trust-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 6px;
+}
+
+.confirmation-checkbox {
+    width: 18px;
+    height: 18px;
+    accent-color: #f0f0f0;
+    cursor: pointer;
+}
+
+.confirmation-trust-label {
+    font-size: 14px;
+    color: #b0b0b0;
+}
+
+.confirmation-buttons {
+    display: flex;
+    justify-content: flex-end;
+    gap: 15px;
+    margin-top: 10px;
+}
+
+.confirmation-cancel-btn {
+    background-color: rgba(37, 37, 37, 0.7);
+    color: #b0b0b0;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 10px 18px;
+    border-radius: 30px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    /* Prevent text selection */
+    user-select: none;
+    -webkit-user-select: none;
+}
+
+.confirmation-cancel-btn:hover {
+    background-color: rgba(48, 48, 48, 0.9);
+    color: #f0f0f0;
+    transform: translateY(-2px);
+}
+
+.confirmation-confirm-btn {
+    background-color: rgba(37, 37, 37, 0.7);
+    color: #f0f0f0;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 10px 18px;
+    border-radius: 30px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    /* Prevent text selection */
+    user-select: none;
+    -webkit-user-select: none;
+}
+
+.confirmation-confirm-btn:hover {
+    background-color: rgba(48, 48, 48, 0.9);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+/* Add active states for better feedback */
+.confirmation-cancel-btn:active,
+.confirmation-confirm-btn:active {
+    transform: translateY(0);
+    opacity: 0.8;
+}
+
+@media (max-width: 480px) {
+    .confirmation-dialog {
+        padding: 20px;
+        gap: 15px;
+    }
+    
+    .confirmation-heading {
+        font-size: 20px;
+    }
+    
+    .confirmation-message {
+        font-size: 14px;
+    }
+    
+    .confirmation-url,
+    .confirmation-trust-label {
+        font-size: 13px;
+    }
+    
+    .confirmation-cancel-btn,
+    .confirmation-confirm-btn {
+        padding: 8px 16px;
+        font-size: 13px;
+    }
+}
+
+/* Snow Effect Toggle Button */
+.snow-toggle {
+    position: fixed;
+    bottom: 70px;
+    right: 20px;
+    background-color: rgba(26, 26, 26, 0.7);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: #f0f0f0;
+    backdrop-filter: blur(5px);
+    transition: all 0.3s ease;
+    z-index: 100;
+}
+
+.snow-toggle:hover {
+    background-color: rgba(48, 48, 48, 0.9);
+    transform: scale(1.05);
+}
+
+.snow-toggle.active {
+    background-color: rgba(60, 60, 60, 0.9);
+    border-color: rgba(255, 255, 255, 0.3);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+.snow-toggle svg {
+    width: 20px;
+    height: 20px;
+    fill: #f0f0f0;
+}
+
+@media (max-width: 480px) {
+    .snow-toggle {
+        bottom: 60px;
+        right: 15px;
+        width: 36px;
+        height: 36px;
+    }
+    
+    .snow-toggle svg {
+        width: 18px;
+        height: 18px;
+    }
+}
