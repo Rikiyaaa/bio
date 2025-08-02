@@ -47,7 +47,6 @@ const snowflakeChars = ['❄', '❅', '❆', '✻', '✼', '❇', '❈', '❉', 
 
 // ค่าการตั้งค่าที่สามารถปรับได้
 const config = {
-<<<<<<< HEAD
     maxFlakes: 10,           // ลดจำนวนเกล็ดหิมะลงเพื่อเพิ่มประสิทธิภาพ
     createInterval: 1000,    // เพิ่มระยะเวลาระหว่างการสร้างเกล็ดหิมะ
     animationDuration: {     // เวลาในการตกจากบนลงล่าง
@@ -55,28 +54,16 @@ const config = {
         max: 20              // เพิ่มความเร็วสูงสุด
     },
     updateInterval: 150,     // ลดการอัพเดตเพื่อประหยัด CPU
-=======
-    maxFlakes: 15,           // ลดจากเดิม 20 เป็น 15
-    createInterval: 700,     // เพิ่มจาก 500 เป็น 700ms เพื่อสร้างเกล็ดหิมะน้อยลง
-    animationDuration: {     // เวลาในการตกจากบนลงล่าง (แทนการคำนวณตำแหน่งทุกเฟรม)
-        min: 8,              // เร็วสุด 8 วินาที
-        max: 15              // ช้าสุด 15 วินาที
-    },
-    updateInterval: 100,     // อัพเดตตำแหน่งทุก 100ms แทนที่จะเป็นทุกเฟรม
->>>>>>> 2d888414db0a8d41fe11680a66ce794fcd6d4aa5
     isMobile: window.innerWidth < 768
 };
 
 // ปรับค่าตามอุปกรณ์
 if (config.isMobile) {
-<<<<<<< HEAD
+
     config.maxFlakes = 5;    // ลดจำนวนเกล็ดหิมะลงอีกสำหรับมือถือ
     config.createInterval = 1500; // เพิ่มระยะเวลาระหว่างการสร้างให้นานขึ้น
     config.updateInterval = 200; // ลดการอัพเดตลงอีกบนมือถือ
-=======
-    config.maxFlakes = 7;    // ลดลงอีกสำหรับมือถือ
-    config.createInterval = 1000; // เพิ่มช่วงเวลาให้นานขึ้น
->>>>>>> 2d888414db0a8d41fe11680a66ce794fcd6d4aa5
+
 }
 
 // สร้างคอนเทนเนอร์สำหรับเกล็ดหิมะทั้งหมด
@@ -305,7 +292,6 @@ function initSnowEffect() {
 // เพิ่มปุ่มควบคุมสำหรับเปิด/ปิดเอฟเฟกต์ (เพื่อความสะดวก)
 function addControlButton() {
     const controlButton = document.createElement('button');
-<<<<<<< HEAD
     controlButton.className = 'snow-toggle';
     // เพิ่ม SVG icon สำหรับหิมะแบบใหม่
     controlButton.innerHTML = `
@@ -321,48 +307,17 @@ function addControlButton() {
     if (isRunning) {
         controlButton.classList.add('active');
     }
-=======
-    controlButton.textContent = 'ปิดเอฟเฟกต์หิมะ';
-    controlButton.style.cssText = `
-        position: fixed;
-        bottom: 10px;
-        right: 10px;
-        z-index: 100;
-        padding: 5px 10px;
-        background: rgba(0,0,0,0.5);
-        color: white;
-        border: none;
-        border-radius: 5px;
-        font-family: sans-serif;
-        cursor: pointer;
-        opacity: 0.6;
-        transition: opacity 0.3s;
-    `;
-    
-    controlButton.addEventListener('mouseover', function() {
-        this.style.opacity = '1';
-    });
-    
-    controlButton.addEventListener('mouseout', function() {
-        this.style.opacity = '0.6';
-    });
->>>>>>> 2d888414db0a8d41fe11680a66ce794fcd6d4aa5
+
     
     controlButton.addEventListener('click', function() {
         if (isRunning) {
             stopSnow();
             clearSnow();
-<<<<<<< HEAD
+ 
             controlButton.classList.remove('active');
         } else {
             startSnow();
             controlButton.classList.add('active');
-=======
-            controlButton.textContent = 'เปิดเอฟเฟกต์หิมะ';
-        } else {
-            startSnow();
-            controlButton.textContent = 'ปิดเอฟเฟกต์หิมะ';
->>>>>>> 2d888414db0a8d41fe11680a66ce794fcd6d4aa5
         }
     });
     

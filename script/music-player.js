@@ -1,7 +1,3 @@
-<<<<<<< HEAD
-let isDragging = false;
-=======
->>>>>>> 2d888414db0a8d41fe11680a66ce794fcd6d4aa5
 // Music Player with SoundCloud Integration
 
 // Music player elements
@@ -11,10 +7,6 @@ const pauseIcon = document.getElementById('pause-icon');
 const musicProgress = document.getElementById('music-progress');
 const currentTimeEl = document.getElementById('current-time');
 const durationEl = document.getElementById('duration');
-<<<<<<< HEAD
-=======
-const waveBars = document.querySelectorAll('.wave-bar');
->>>>>>> 2d888414db0a8d41fe11680a66ce794fcd6d4aa5
 const albumCover = document.getElementById('album-cover');
 const musicWave = document.querySelector('.music-wave');
 
@@ -27,19 +19,10 @@ let scDuration = 0;
 function initSoundCloud() {
     const iframeElement = document.querySelector('#soundcloud-widget');
     scPlayer = SC.Widget(iframeElement);
-<<<<<<< HEAD
     let currentTrack = getRandomTrack(); // เริ่มต้นด้วยเพลงสุ่ม
-
-    // ให้ playlist.js เข้าถึง player ได้
-    window.scPlayer = scPlayer;
-    window.scReady = scReady;
-    window.getRandomTrack = getRandomTrack;
-    window.getNextTrack = getNextTrack;
     
     scPlayer.bind(SC.Widget.Events.READY, function() {
         scReady = true;
-        window.scReady = true;
-        console.log('SoundCloud READY: window.scReady =', window.scReady);
         
         // โหลดเพลงแรก
         scPlayer.load(currentTrack.url, {
@@ -51,15 +34,10 @@ function initSoundCloud() {
                 document.querySelector('.music-title').textContent = currentTrack.title;
                 document.querySelector('.music-artist').textContent = currentTrack.artist;
                 
-                // อัปเดต currentTrack เป็น global
-                window.currentTrack = currentTrack;
-                // รีเซ็ต progress bar, current time, duration
-                musicProgress.style.width = '0%';
-                currentTimeEl.textContent = '0:00';
-                durationEl.textContent = '--:--';
+                // Get track duration
                 scPlayer.getDuration(function(duration) {
                     scDuration = duration;
-                    durationEl.textContent = duration > 0 ? formatTime(duration/1000) : '--:--';
+                    durationEl.textContent = formatTime(duration/1000);
                 });
                 
         // ตั้งค่าระดับเสียงเริ่มต้น
@@ -145,31 +123,39 @@ function initSoundCloud() {
     });
     
     // Setup SoundCloud event listeners with smooth progress update
-    // scPlayer.bind(SC.Widget.Events.PLAY_PROGRESS, function(e) {
-    //     // Update music progress bar smoothly
-    //     const position = e.currentPosition / 1000;
-    //     const duration = scDuration / 1000;
-    //     targetProgress = (position / duration) * 100;
-    //     
-    //     // ยกเลิก animation frame เดิม (ถ้ามี)
-    //     if (progressAnimationFrame) {
-    //         cancelAnimationFrame(progressAnimationFrame);
-    //     }
-    //     
-    //     // เริ่ม animation ใหม่
-    //     lastProgress = null;
-    //     progressAnimationFrame = requestAnimationFrame(animateProgress);
-    //     
-    //     // อัพเดทเวลาแบบ smooth
-    //     requestAnimationFrame(() => {
-    //         currentTimeEl.textContent = formatTime(position);
-    //     });
-    // });
+    scPlayer.bind(SC.Widget.Events.PLAY_PROGRESS, function(e) {
+        // Update music progress bar smoothly
+        const position = e.currentPosition / 1000;
+        const duration = scDuration / 1000;
+        targetProgress = (position / duration) * 100;
+        
+        // ยกเลิก animation frame เดิม (ถ้ามี)
+        if (progressAnimationFrame) {
+            cancelAnimationFrame(progressAnimationFrame);
+        }
+        
+        // เริ่ม animation ใหม่
+        lastProgress = null;
+        progressAnimationFrame = requestAnimationFrame(animateProgress);
+        
+        // อัพเดทเวลาแบบ smooth
+        requestAnimationFrame(() => {
+            currentTimeEl.textContent = formatTime(position);
+        });
+    });
+    
+    scPlayer.bind(SC.Widget.Events.PLAY, function() {
+        setPlayingState(true);
+    });
+    
+    scPlayer.bind(SC.Widget.Events.PAUSE, function() {
+        setPlayingState(false);
+    });
     
     // ติดตามการเล่นเพลง
     // ติดตามความคืบหน้าการเล่น
     scPlayer.bind(SC.Widget.Events.PLAY_PROGRESS, function(e) {
-        if (!isDragging && scDuration > 0) { // เพิ่มเช็ค scDuration > 0
+        if (!isDragging) { // อัพเดท UI เฉพาะเมื่อไม่ได้กำลังลาก
             const currentPosition = e.currentPosition / 1000;
             const duration = scDuration / 1000;
             const progress = (currentPosition / duration) * 100;
@@ -222,98 +208,6 @@ function initSoundCloud() {
                 }
             });
         });
-=======
-    
-    scPlayer.bind(SC.Widget.Events.READY, function() {
-        scReady = true;
-        
-        // Get track info
-        scPlayer.getCurrentSound(function(sound) {
-            if (sound) {
-                // Set album artwork if available
-                if (sound.artwork_url) {
-                    // Get higher resolution artwork by replacing size
-                    const artworkUrl = sound.artwork_url.replace('-large', '-t500x500');
-                    albumCover.src = artworkUrl;
-                }
-            }
-        });
-        
-        // Get track duration
-        scPlayer.getDuration(function(duration) {
-            scDuration = duration;
-            durationEl.textContent = formatTime(duration/1000); // SoundCloud returns ms
-        });
-        
-        // Set initial volume
-        const volumeSlider = document.getElementById('volume-slider');
-        if (volumeSlider) {
-            scPlayer.setVolume(volumeSlider.value);
-        } else {
-            scPlayer.setVolume(0.2); // Default 70%
-        }
-        
-        // Auto play music after SoundCloud is ready
-        // This happens after user interaction (clicking Enter button)
-        if (typeof enterClicked !== 'undefined' && enterClicked) {
-            playMusic();
-        }
-        
-        // Trigger a custom event to notify that SoundCloud is ready
-        const scReadyEvent = new Event('soundcloud-ready');
-        document.dispatchEvent(scReadyEvent);
-    });
-    
-    // Setup SoundCloud event listeners
-    scPlayer.bind(SC.Widget.Events.PLAY_PROGRESS, function(e) {
-        // Update music progress bar
-        const position = e.currentPosition / 1000; // convert to seconds
-        const duration = scDuration / 1000;
-        const progressPercentage = (position / duration) * 100;
-        
-        musicProgress.style.width = `${progressPercentage}%`;
-        currentTimeEl.textContent = formatTime(position);
-    });
-    
-    scPlayer.bind(SC.Widget.Events.PLAY, function() {
-        setPlayingState(true);
-    });
-    
-    scPlayer.bind(SC.Widget.Events.PAUSE, function() {
-        setPlayingState(false);
-    });
-    
-    scPlayer.bind(SC.Widget.Events.FINISH, function() {
-        setPlayingState(false);
-        musicProgress.style.width = '0%';
-        currentTimeEl.textContent = '0:00';
-        
-        // Loop the track
-        setTimeout(() => {
-            scPlayer.seekTo(0);
-            scPlayer.play();
-        }, 1000);
-    });
-    
-    // Create wave visualization bars
-    createWaveVisualization();
-}
-
-// Create wave visualization bars for music player
-function createWaveVisualization() {
-    musicWave.innerHTML = ''; // Clear existing bars if any
-    
-    // Create wave bars
-    for (let i = 0; i < 20; i++) {
-        const bar = document.createElement('div');
-        bar.className = 'wave-bar';
-        
-        // Random height for aesthetics
-        const height = Math.floor(Math.random() * 20) + 10;
-        bar.style.height = `${height}px`;
-        
-        musicWave.appendChild(bar);
->>>>>>> 2d888414db0a8d41fe11680a66ce794fcd6d4aa5
     }
 }
 
@@ -354,7 +248,6 @@ function playMusic() {
     }
 }
 
-<<<<<<< HEAD
 // Format time in MM:SS
 function formatTime(seconds) {
     const mins = Math.floor(seconds / 60);
@@ -392,18 +285,14 @@ document.addEventListener('DOMContentLoaded', function() {
     // Initialize SoundCloud
     initSoundCloud();
     
-=======
-// Initialize event listeners for music player
-document.addEventListener('DOMContentLoaded', function() {
->>>>>>> 2d888414db0a8d41fe11680a66ce794fcd6d4aa5
     // Handle play button click
     playBtn.addEventListener('click', function() {
         playMusic();
     });
     
-<<<<<<< HEAD
     // Handle music timeline interaction
     const musicTimeline = document.querySelector('.music-timeline');
+    let isDragging = false;
     let wasPlaying = false;
     let lastTouchY = 0;
 
@@ -464,9 +353,7 @@ document.addEventListener('DOMContentLoaded', function() {
     document.addEventListener('mouseup', function(e) {
         if (isDragging && scReady) {
             const seekTime = smoothSeek(e);
-            scPlayer.seekTo(seekTime, function() {
-                currentTimeEl.textContent = formatTime(seekTime / 1000); // อัปเดตเวลาหลัง seek จริง
-            });
+            scPlayer.seekTo(seekTime);
             if (wasPlaying) {
                 scPlayer.play();
             }
@@ -483,16 +370,4 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     }
-=======
-    // Handle music timeline clicks
-    document.querySelector('.music-timeline').addEventListener('click', function(e) {
-        if (scReady) {
-            const timeline = this.getBoundingClientRect();
-            const clickPosition = (e.clientX - timeline.left) / timeline.width;
-            const seekTime = Math.floor(clickPosition * (scDuration / 1000)) * 1000; // Convert to ms
-            
-            scPlayer.seekTo(seekTime);
-        }
-    });
->>>>>>> 2d888414db0a8d41fe11680a66ce794fcd6d4aa5
 });

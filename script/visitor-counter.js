@@ -1,25 +1,17 @@
-<<<<<<< HEAD
-// เพิ่มตัวแปร global เพื่อเช็คว่าได้เพิ่มจำนวนผู้เข้าชมในเซสชั่นนี้ไปแล้วหรือยัง
-let hasIncrementedThisSession = false;
 
-=======
->>>>>>> 2d888414db0a8d41fe11680a66ce794fcd6d4aa5
+let hasIncrementedThisSession = false;
 function initVisitorCounter() {
     const visitorCountElement = document.getElementById('visitor-count');
     
     if (!visitorCountElement) return;
     
-<<<<<<< HEAD
-=======
     const websiteNamespace = 'www.kitsxkorn.xyz'; // Use as website name or URL (no spaces or special chars)
     const counterKey = 'visitors'; // Key for storing visitor count
     
->>>>>>> 2d888414db0a8d41fe11680a66ce794fcd6d4aa5
     // Show loading state
     visitorCountElement.textContent = '';
     visitorCountElement.classList.add('loading');
     
-<<<<<<< HEAD
     // ดึงข้อมูลจาก localStorage
     let count = localStorage.getItem('visitorCount');
     
@@ -44,7 +36,6 @@ function initVisitorCounter() {
         // เพิ่ม hover effect เพื่อแสดงจำนวนผู้เข้าชมแบบเต็ม
         visitorCountElement.parentElement.title = `ผู้เข้าชมทั้งหมด: ${formatVisitorCount(parseInt(count))} คน`;
     }, 1000);
-=======
     // Create URL for API request using the new API endpoint
     const apiUrl = `https://api.counterapi.dev/v1/${encodeURIComponent(websiteNamespace)}/${encodeURIComponent(counterKey)}/up`;
     
@@ -69,7 +60,6 @@ function initVisitorCounter() {
             visitorCountElement.textContent = '1';
             visitorCountElement.classList.remove('loading');
         });
->>>>>>> 2d888414db0a8d41fe11680a66ce794fcd6d4aa5
 }
 
 // Format visitor count for readability
@@ -88,7 +78,6 @@ function formatVisitorCount(count) {
     }
 }
 
-<<<<<<< HEAD
 // ป้องกันการเรียกใช้งานซ้ำ
 let isCounterInitialized = false;
 
@@ -110,16 +99,4 @@ document.addEventListener('DOMContentLoaded', function() {
             setTimeout(initCounter, 2000);
         });
     }
-=======
-// Initialize when page is loaded
-document.addEventListener('DOMContentLoaded', function() {
-    // Visitor counter will be initialized after the loading screen
-    // through the showMainContent function in main.js
-    
-    // Also add event listener to the enter button as a fallback
-    document.getElementById('enter-screen').addEventListener('click', function() {
-        // Wait for content to load before initializing counter
-        setTimeout(initVisitorCounter, 2000);
-    });
->>>>>>> 2d888414db0a8d41fe11680a66ce794fcd6d4aa5
 });

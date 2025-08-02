@@ -44,7 +44,6 @@ function showMainContent() {
             // Initialize components
             initTypingEffect();
             setupTiltEffect();
-<<<<<<< HEAD
             setTimeout(() => {
                 initSoundCloud();
                 
@@ -57,12 +56,7 @@ function showMainContent() {
                     }, 100);
                 }
             }, 500);
-            initDiscordIntegration();
-=======
-            initSoundCloud();
-            initVisitorCounter();
             initDiscordProfile();
->>>>>>> 2d888414db0a8d41fe11680a66ce794fcd6d4aa5
             initSnowEffect();
         }, 100);
     }, 500);
