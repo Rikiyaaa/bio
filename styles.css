@@ -4,6 +4,7 @@
     box-sizing: border-box;
 }
 
+<<<<<<< HEAD
 html, body {
     margin: 0;
     padding: 0;
@@ -15,14 +16,26 @@ html, body {
 }
 
 body {
+=======
+body {
+    margin: 0;
+    padding: 0;
+>>>>>>> 2d888414db0a8d41fe11680a66ce794fcd6d4aa5
     color: #f0f0f0;
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
     display: flex;
     justify-content: center;
     align-items: center;
+<<<<<<< HEAD
     background-color: #0a0a0a;
     will-change: transform;
     -webkit-font-smoothing: antialiased;
+=======
+    min-height: 100vh;
+    overflow: hidden;
+    position: relative;
+    background-color: #0a0a0a;
+>>>>>>> 2d888414db0a8d41fe11680a66ce794fcd6d4aa5
 }
 
 #video-background {
@@ -57,7 +70,10 @@ body {
     border-radius: 10px;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
     backdrop-filter: blur(5px);
+<<<<<<< HEAD
     -webkit-backdrop-filter: blur(5px);
+=======
+>>>>>>> 2d888414db0a8d41fe11680a66ce794fcd6d4aa5
     transform-style: preserve-3d;
     perspective: 1000px;
     transition: transform 0.1s ease;
@@ -66,9 +82,12 @@ body {
     margin: 15px;
     border: 1px solid rgba(255, 255, 255, 0.1);
     position: relative;
+<<<<<<< HEAD
     will-change: transform, opacity;
     touch-action: none;
     -webkit-overflow-scrolling: touch;
+=======
+>>>>>>> 2d888414db0a8d41fe11680a66ce794fcd6d4aa5
 }
 
 .profile {
@@ -360,6 +379,7 @@ body {
     display: flex;
     align-items: center;
     transform: translateZ(10px);
+<<<<<<< HEAD
     transition: all 0.3s ease;
 }
 
@@ -367,6 +387,8 @@ body {
 .music-player.is-playing {
     background-color: #252525;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+=======
+>>>>>>> 2d888414db0a8d41fe11680a66ce794fcd6d4aa5
 }
 
 .album-cover {
@@ -441,9 +463,12 @@ body {
     margin-top: 8px;
     cursor: pointer;
     overflow: hidden;
+<<<<<<< HEAD
     touch-action: none;
     -webkit-user-select: none;
     user-select: none;
+=======
+>>>>>>> 2d888414db0a8d41fe11680a66ce794fcd6d4aa5
 }
 
 .music-progress {
@@ -883,6 +908,7 @@ body {
         width: 80px;
     }
 }
+<<<<<<< HEAD
 
 /* Playlist Button and Panel Styles */
 .playlist-button {
@@ -1028,6 +1054,8 @@ body {
         max-height: 60vh;
     }
 }
+=======
+>>>>>>> 2d888414db0a8d41fe11680a66ce794fcd6d4aa5
 /* Confirmation Dialog Styles */
 .confirmation-dialog-overlay {
     position: fixed;
@@ -1192,6 +1220,7 @@ body {
         padding: 8px 16px;
         font-size: 13px;
     }
+<<<<<<< HEAD
 }
 
 /* Snow Effect Toggle Button */
@@ -1243,4 +1272,6 @@ body {
         width: 18px;
         height: 18px;
     }
+=======
+>>>>>>> 2d888414db0a8d41fe11680a66ce794fcd6d4aa5
 }

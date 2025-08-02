@@ -9,6 +9,7 @@ function setupTiltEffect() {
     // Only setup tilt effect on non-mobile devices
     if (window.innerWidth > 768) {
         // Store event handler references to be able to remove them later
+<<<<<<< HEAD
         // Function to handle tilt effect
 function handleTilt(clientX, clientY) {
     containers.forEach((container) => {
@@ -44,6 +45,24 @@ document.addEventListener('touchend', () => {
         container.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg)';
     });
 });
+=======
+        window.handleMouseMove = (e) => {
+            const rect = card.getBoundingClientRect();
+            const x = e.clientX - rect.left; // x position within the element
+            const y = e.clientY - rect.top;  // y position within the element
+            
+            const centerX = rect.width / 2;
+            const centerY = rect.height / 2;
+            
+            const deltaX = (x - centerX) / centerX;
+            const deltaY = (y - centerY) / centerY;
+            
+            const tiltX = deltaY * 10; // tilt up/down
+            const tiltY = -deltaX * 10; // tilt left/right
+            
+            card.style.transform = `perspective(1000px) rotateX(${tiltX}deg) rotateY(${tiltY}deg)`;
+        };
+>>>>>>> 2d888414db0a8d41fe11680a66ce794fcd6d4aa5
         
         window.handleMouseLeave = () => {
             // Reset card position when mouse leaves

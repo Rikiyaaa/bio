@@ -90,7 +90,11 @@ const createMouseTrail = () => {
     
     // Throttle for particle creation (prevents too many particles)
     let lastParticleTime = 0;
+<<<<<<< HEAD
     const particleThrottle = 20; // เพิ่มระยะเวลาระหว่างการสร้างอนุภาคเป็น 20ms
+=======
+    const particleThrottle = 10; // ms between particle creations
+>>>>>>> 2d888414db0a8d41fe11680a66ce794fcd6d4aa5
     
     // Track mouse movement
     window.addEventListener('mousemove', (e) => {
@@ -169,6 +173,7 @@ const createMouseTrail = () => {
         }
         
         // Limit the number of particles for performance
+<<<<<<< HEAD
         if (particles.length > 100) { // ลดจำนวนอนุภาคสูงสุดเพื่อเพิ่มประสิทธิภาพ
             particles = particles.slice(-100);
         }
@@ -177,6 +182,13 @@ const createMouseTrail = () => {
         if (particles.length > 0) {
             requestAnimationFrame(animate);
         }
+=======
+        if (particles.length > 200) {
+            particles = particles.slice(-200);
+        }
+        
+        requestAnimationFrame(animate);
+>>>>>>> 2d888414db0a8d41fe11680a66ce794fcd6d4aa5
     }
     
     // Start animation
