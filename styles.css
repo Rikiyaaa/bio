@@ -20,15 +20,12 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-
     background-color: #0a0a0a;
     will-change: transform;
     -webkit-font-smoothing: antialiased;
-
     min-height: 100vh;
     overflow: hidden;
     position: relative;
-    background-color: #0a0a0a;
 }
 
 #video-background {
@@ -190,23 +187,6 @@ body {
     height: 20px;
 }
 
-@media (max-width: 480px) {
-    .links {
-        gap: 15px;
-    }
-    
-    .link {
-        width: 40px;
-        height: 40px;
-        padding: 10px;
-    }
-    
-    .link svg {
-        width: 18px;
-        height: 18px;
-    }
-}
-
 .footer {
     margin-top: 30px;
     text-align: center;
@@ -366,11 +346,9 @@ body {
     display: flex;
     align-items: center;
     transform: translateZ(10px);
-
     transition: all 0.3s ease;
 }
 
-/* เพิ่ม effects เมื่อกำลังเล่นเพลง */
 .music-player.is-playing {
     background-color: #252525;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
@@ -491,49 +469,9 @@ body {
     to { opacity: 0; visibility: hidden; }
 }
 
-
 /* SoundCloud iframe container */
 .soundcloud-container {
     display: none;
-}
-
-/* Mobile responsive adjustments */
-@media (max-width: 480px) {
-    .container {
-        padding: 20px;
-    }
-    
-    .profile-picture {
-        width: 100px; 
-        height: 100px;
-    }
-
-    .avatar-decoration {
-        width: 125px;
-        height: 125px;
-        top: -12px;
-    }
-    
-    .username {
-        font-size: 20px;
-    }
-    
-    .bio {
-        font-size: 14px;
-    }
-    
-    .link {
-        padding: 10px 12px;
-    }
-    
-    .link span {
-        font-size: 14px;
-    }
-    
-    .album-cover {
-        width: 40px;
-        height: 40px;
-    }
 }
 
 /* Discord Profile Styles */
@@ -625,17 +563,6 @@ body {
 .discord-time {
     font-size: 10px;
     color: #72767d;
-}
-
-@media (max-width: 480px) {
-    .discord-avatar img {
-        width: 40px;
-        height: 40px;
-    }
-    
-    .discord-username {
-        font-size: 14px;
-    }
 }
 
 .discord-badges {
@@ -731,7 +658,6 @@ body {
     letter-spacing: 0.5px;
 }
 
-/* Loading animation for visitor counter */
 .visitor-count.loading {
     position: relative;
     width: 20px;
@@ -743,24 +669,11 @@ body {
     left: 0;
     animation: loadingDots 1.5s infinite;
 }
+
 @keyframes loadingDots {
     0%, 20% { content: "."; }
     40%, 60% { content: ".."; }
     80%, 100% { content: "..."; }
-}
-
-@media (max-width: 480px) {
-    .visitor-counter {
-        padding: 5px 8px;
-        font-size: 10px;
-        top: 8px;
-        left: 8px;
-    }
-    
-    .visitor-icon svg {
-        width: 12px;
-        height: 12px;
-    }
 }
 
 /* Volume Controls Styles */
@@ -865,32 +778,6 @@ body {
     color: #aaa;
     margin-top: 2px;
 }
-
-@media (max-width: 480px) {
-    .volume-control-container {
-        bottom: 15px;
-        right: 15px;
-    }
-    
-    .volume-button {
-        width: 36px;
-        height: 36px;
-    }
-    
-    .volume-button svg {
-        width: 16px;
-        height: 16px;
-    }
-    
-    .volume-control-container:hover .volume-slider-container {
-        width: 100px;
-    }
-    
-    .volume-slider {
-        width: 80px;
-    }
-}
-
 
 /* Playlist Button and Panel Styles */
 .playlist-button {
@@ -1021,21 +908,6 @@ body {
     text-overflow: ellipsis;
 }
 
-@media (max-width: 480px) {
-    .playlist-button {
-        bottom: 15px;
-        left: 15px;
-        width: 36px;
-        height: 36px;
-    }
-
-    .playlist-panel {
-        bottom: 60px;
-        left: 15px;
-        width: calc(100% - 30px);
-        max-height: 60vh;
-    }
-}
 /* Confirmation Dialog Styles */
 .confirmation-dialog-overlay {
     position: fixed;
@@ -1137,7 +1009,6 @@ body {
     font-weight: 500;
     cursor: pointer;
     transition: all 0.2s ease;
-    /* Prevent text selection */
     user-select: none;
     -webkit-user-select: none;
 }
@@ -1158,7 +1029,6 @@ body {
     font-weight: 500;
     cursor: pointer;
     transition: all 0.2s ease;
-    /* Prevent text selection */
     user-select: none;
     -webkit-user-select: none;
 }
@@ -1169,37 +1039,10 @@ body {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 }
 
-/* Add active states for better feedback */
 .confirmation-cancel-btn:active,
 .confirmation-confirm-btn:active {
     transform: translateY(0);
     opacity: 0.8;
-}
-
-@media (max-width: 480px) {
-    .confirmation-dialog {
-        padding: 20px;
-        gap: 15px;
-    }
-    
-    .confirmation-heading {
-        font-size: 20px;
-    }
-    
-    .confirmation-message {
-        font-size: 14px;
-    }
-    
-    .confirmation-url,
-    .confirmation-trust-label {
-        font-size: 13px;
-    }
-    
-    .confirmation-cancel-btn,
-    .confirmation-confirm-btn {
-        padding: 8px 16px;
-        font-size: 13px;
-    }
 }
 
 /* Snow Effect Toggle Button */
@@ -1239,7 +1082,259 @@ body {
     fill: #f0f0f0;
 }
 
+/* ===== RESPONSIVE DESIGN ===== */
+
+/* Tablet - ความกว้าง 768px ลงมา */
+@media (max-width: 768px) {
+    .container {
+        max-width: 450px;
+        padding: 25px;
+        margin: 10px;
+    }
+    
+    .profile-picture {
+        width: 110px;
+        height: 110px;
+    }
+    
+    .avatar-decoration {
+        width: 135px;
+        height: 135px;
+        top: -12px;
+    }
+    
+    .username {
+        font-size: 22px;
+    }
+    
+    .bio {
+        font-size: 14px;
+    }
+    
+    .links {
+        gap: 18px;
+    }
+    
+    .link {
+        width: 42px;
+        height: 42px;
+        padding: 11px;
+    }
+    
+    .link svg {
+        width: 19px;
+        height: 19px;
+    }
+    
+    .enter-content h1 {
+        font-size: 28px;
+    }
+    
+    .playlist-panel {
+        width: 280px;
+        max-height: 350px;
+    }
+    
+    .volume-control-container:hover .volume-slider-container {
+        width: 110px;
+    }
+    
+    .volume-slider {
+        width: 90px;
+    }
+}
+
+/* Mobile Landscape - ความกว้าง 640px ลงมา */
+@media (max-width: 640px) {
+    .container {
+        max-width: 400px;
+        padding: 22px;
+        margin: 8px;
+    }
+    
+    .profile-picture {
+        width: 105px;
+        height: 105px;
+    }
+    
+    .avatar-decoration {
+        width: 130px;
+        height: 130px;
+        top: -12px;
+    }
+    
+    .username {
+        font-size: 21px;
+    }
+    
+    .bio {
+        font-size: 14px;
+    }
+    
+    .links {
+        gap: 16px;
+    }
+    
+    .link {
+        width: 41px;
+        height: 41px;
+        padding: 10px;
+    }
+    
+    .link svg {
+        width: 18px;
+        height: 18px;
+    }
+    
+    .visitor-counter {
+        top: 8px;
+        left: 8px;
+        padding: 5px 8px;
+        font-size: 11px;
+    }
+    
+    .volume-control-container {
+        bottom: 18px;
+        right: 18px;
+    }
+    
+    .volume-button {
+        width: 38px;
+        height: 38px;
+    }
+    
+    .snow-toggle {
+        bottom: 65px;
+        right: 18px;
+        width: 38px;
+        height: 38px;
+    }
+    
+    .snow-toggle svg {
+        width: 19px;
+        height: 19px;
+    }
+    
+    .playlist-button {
+        bottom: 18px;
+        left: 18px;
+        width: 38px;
+        height: 38px;
+    }
+    
+    .playlist-panel {
+        bottom: 65px;
+        left: 18px;
+        width: calc(100% - 36px);
+        max-height: 50vh;
+    }
+}
+
+/* Mobile Portrait - ความกว้าง 480px ลงมา */
 @media (max-width: 480px) {
+    .container {
+        max-width: 350px;
+        padding: 20px;
+        margin: 5px;
+    }
+    
+    .profile-picture {
+        width: 100px; 
+        height: 100px;
+    }
+
+    .avatar-decoration {
+        width: 125px;
+        height: 125px;
+        top: -12px;
+    }
+    
+    .username {
+        font-size: 20px;
+    }
+    
+    .bio {
+        font-size: 14px;
+    }
+    
+    .links {
+        gap: 15px;
+    }
+    
+    .link {
+        width: 40px;
+        height: 40px;
+        padding: 10px;
+    }
+    
+    .link svg {
+        width: 18px;
+        height: 18px;
+    }
+    
+    .album-cover {
+        width: 40px;
+        height: 40px;
+    }
+    
+    .discord-avatar img {
+        width: 40px;
+        height: 40px;
+    }
+    
+    .discord-username {
+        font-size: 14px;
+    }
+    
+    .visitor-counter {
+        padding: 5px 8px;
+        font-size: 10px;
+        top: 8px;
+        left: 8px;
+    }
+    
+    .visitor-icon svg {
+        width: 12px;
+        height: 12px;
+    }
+    
+    .volume-control-container {
+        bottom: 15px;
+        right: 15px;
+    }
+    
+    .volume-button {
+        width: 36px;
+        height: 36px;
+    }
+    
+    .volume-button svg {
+        width: 16px;
+        height: 16px;
+    }
+    
+    .volume-control-container:hover .volume-slider-container {
+        width: 100px;
+    }
+    
+    .volume-slider {
+        width: 80px;
+    }
+    
+    .playlist-button {
+        bottom: 15px;
+        left: 15px;
+        width: 36px;
+        height: 36px;
+    }
+
+    .playlist-panel {
+        bottom: 60px;
+        left: 15px;
+        width: calc(100% - 30px);
+        max-height: 60vh;
+    }
+    
     .snow-toggle {
         bottom: 60px;
         right: 15px;
@@ -1250,5 +1345,203 @@ body {
     .snow-toggle svg {
         width: 18px;
         height: 18px;
+    }
+    
+    .confirmation-dialog {
+        padding: 20px;
+        gap: 15px;
+    }
+    
+    .confirmation-heading {
+        font-size: 20px;
+    }
+    
+    .confirmation-message {
+        font-size: 14px;
+    }
+    
+    .confirmation-url,
+    .confirmation-trust-label {
+        font-size: 13px;
+    }
+    
+    .confirmation-cancel-btn,
+    .confirmation-confirm-btn {
+        padding: 8px 16px;
+        font-size: 13px;
+    }
+    
+    .enter-content h1 {
+        font-size: 26px;
+    }
+    
+    .enter-button {
+        font-size: 14px;
+        padding: 10px 20px;
+    }
+}
+
+/* Very Small Mobile - ความกว้าง 360px ลงมา */
+@media (max-width: 360px) {
+    .container {
+        max-width: 320px;
+        padding: 18px;
+        margin: 3px;
+    }
+    
+    .profile-picture {
+        width: 90px;
+        height: 90px;
+    }
+    
+    .avatar-decoration {
+        width: 115px;
+        height: 115px;
+        top: -12px;
+    }
+    
+    .username {
+        font-size: 18px;
+    }
+    
+    .bio {
+        font-size: 13px;
+    }
+    
+    .links {
+        gap: 12px;
+    }
+    
+    .link {
+        width: 38px;
+        height: 38px;
+        padding: 9px;
+    }
+    
+    .link svg {
+        width: 16px;
+        height: 16px;
+    }
+    
+    .music-player {
+        padding: 10px;
+    }
+    
+    .album-cover {
+        width: 36px;
+        height: 36px;
+    }
+    
+    .music-title {
+        font-size: 13px;
+    }
+    
+    .music-artist {
+        font-size: 11px;
+    }
+    
+    .enter-content h1 {
+        font-size: 24px;
+    }
+    
+    .enter-button {
+        font-size: 13px;
+        padding: 9px 18px;
+    }
+    
+    .confirmation-dialog {
+        padding: 18px;
+        gap: 12px;
+    }
+    
+    .confirmation-heading {
+        font-size: 18px;
+    }
+    
+    .confirmation-message {
+        font-size: 13px;
+    }
+}
+
+/* Tiny Mobile - ความกว้าง 320px ลงมา */
+@media (max-width: 320px) {
+    .container {
+        max-width: 300px;
+        padding: 15px;
+        margin: 2px;
+    }
+    
+    .profile-picture {
+        width: 85px;
+        height: 85px;
+    }
+    
+    .avatar-decoration {
+        width: 110px;
+        height: 110px;
+        top: -12px;
+    }
+    
+    .username {
+        font-size: 17px;
+    }
+    
+    .bio {
+        font-size: 12px;
+    }
+    
+    .links {
+        gap: 10px;
+    }
+    
+    .link {
+        width: 36px;
+        height: 36px;
+        padding: 8px;
+    }
+    
+    .link svg {
+        width: 15px;
+        height: 15px;
+    }
+    
+    .visitor-counter {
+        padding: 4px 6px;
+        font-size: 9px;
+        top: 5px;
+        left: 5px;
+    }
+    
+    .volume-control-container {
+        bottom: 12px;
+        right: 12px;
+    }
+    
+    .volume-button {
+        width: 34px;
+        height: 34px;
+    }
+    
+    .playlist-button {
+        bottom: 12px;
+        left: 12px;
+        width: 34px;
+        height: 34px;
+    }
+    
+    .snow-toggle {
+        bottom: 55px;
+        right: 12px;
+        width: 34px;
+        height: 34px;
+    }
+    
+    .enter-content h1 {
+        font-size: 22px;
+    }
+    
+    .enter-button {
+        font-size: 12px;
+        padding: 8px 16px;
     }
 }
